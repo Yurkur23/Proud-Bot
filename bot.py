@@ -167,6 +167,33 @@ async def mover_cargo(ctx, membro: discord.Member, cargo_atual: discord.Role, ca
     await ctx.send(embed=embed)
 
 
+
+@bot.command(name="1")
+@commands.has_permissions(manage_roles=True)
+async def cargo_fixo(ctx, membro: discord.Member):
+
+    cargo = ctx.guild.get_role(1543751524193411166)
+
+    if cargo is None:
+        embed = discord.Embed(title="Erro", description="**Cargo nao encontrado no servidor.**", color=discord.Color.red())
+        return await ctx.send(embed=embed)
+
+    if cargo in membro.roles:
+        embed = discord.Embed(title="Cargo ja atribuido", color=discord.Color.orange())
+        embed.set_thumbnail(url=membro.display_avatar.url)
+        embed.add_field(name="**Membro**", value=membro.mention, inline=False)
+        embed.add_field(name="**Ja possuia**", value=cargo.mention, inline=False)
+        return await ctx.send(embed=embed)
+
+    await membro.add_roles(cargo)
+
+    embed = discord.Embed(title="Cargo Atribuido", color=discord.Color.green())
+    embed.set_thumbnail(url=membro.display_avatar.url)
+    embed.add_field(name="**Membro**", value=membro.mention, inline=False)
+    embed.add_field(name="**Adicionado**", value=cargo.mention, inline=False)
+
+    await ctx.send(embed=embed)
+
 @bot.command(name="help", aliases=["ajuda"])
 async def help_command(ctx):
 
