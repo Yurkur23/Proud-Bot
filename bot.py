@@ -169,8 +169,12 @@ async def mover_cargo(ctx, membro: discord.Member, cargo_atual: discord.Role, ca
 
 
 @bot.command(name="1")
-@commands.has_permissions(manage_roles=True)
 async def cargo_fixo(ctx, membro: discord.Member):
+
+    cargo_perm = ctx.guild.get_role(1543751524193411167)
+    if cargo_perm is None or cargo_perm not in ctx.author.roles:
+        embed = discord.Embed(title="Sem permissao", description="Voce precisa ter o cargo **『琴瑟相和』Theoi Polemikoi** para usar esse comando.", color=discord.Color.red())
+        return await ctx.send(embed=embed)
 
     cargo = ctx.guild.get_role(1543751524193411166)
 
