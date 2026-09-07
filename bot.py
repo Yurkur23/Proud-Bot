@@ -179,7 +179,7 @@ async def cargo_fixo(ctx, membro: discord.Member):
         return await ctx.send(embed=embed)
 
     if cargo in membro.roles:
-        embed = discord.Embed(title="Cargo ja atribuido", color=discord.Color.orange())
+        embed = discord.Embed(title="Daimones ja atribuido", color=discord.Color.orange())
         embed.set_thumbnail(url=membro.display_avatar.url)
         embed.add_field(name="**Membro**", value=membro.mention, inline=False)
         embed.add_field(name="**Ja possuia**", value=cargo.mention, inline=False)
@@ -187,7 +187,7 @@ async def cargo_fixo(ctx, membro: discord.Member):
 
     await membro.add_roles(cargo)
 
-    embed = discord.Embed(title="Cargo Atribuido", color=discord.Color.green())
+    embed = discord.Embed(title="Daimones Atribuido", color=discord.Color.green())
     embed.set_thumbnail(url=membro.display_avatar.url)
     embed.add_field(name="**Membro**", value=membro.mention, inline=False)
     embed.add_field(name="**Adicionado**", value=cargo.mention, inline=False)
